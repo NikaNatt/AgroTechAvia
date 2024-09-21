@@ -3,14 +3,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Blueprint/UserWidget.h"
-#include "ATA_UserWidget.generated.h"
+#include "GameFramework/GameModeBase.h"
+#include "ATAGameModeBase.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class AGROTECHAVIA_API UATA_UserWidget : public UUserWidget
+class AGROTECHAVIA_API AATAGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
 	

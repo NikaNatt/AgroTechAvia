@@ -4,8 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/HUD.h"
-#include "ATA_HUD.generated.h"
+#include "ATAHUD.generated.h"
 
+class UATA_UserWidget;
 /**
  * 
  */
@@ -13,5 +14,14 @@ UCLASS()
 class AGROTECHAVIA_API AATA_HUD : public AHUD
 {
 	GENERATED_BODY()
-	
+
+protected:
+	virtual void BeginPlay() override;
+
+private:
+	UPROPERTY()
+	TObjectPtr<UATA_UserWidget> MainWidgetRef;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UUserWidget> MainWidgetSubclass;
 };

@@ -3,14 +3,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UObject/NoExportTypes.h"
-#include "ATA_WidgetController.generated.h"
+#include "Blueprint/UserWidget.h"
+#include "ATAUserWidget.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class AGROTECHAVIA_API UATA_WidgetController : public UObject
+class AGROTECHAVIA_API UATA_UserWidget : public UUserWidget
 {
 	GENERATED_BODY()
 	
