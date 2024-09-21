@@ -6,6 +6,8 @@
 #include "GameFramework/PlayerController.h"
 #include "ATAPlayerController.generated.h"
 
+class UInputMappingContext;
+class UInputAction;
 /**
  * 
  */
@@ -16,5 +18,19 @@ class AGROTECHAVIA_API AATAPlayerController : public APlayerController
 
 protected:
 	virtual void BeginPlay() override;
+
+	virtual void SetupInputComponent() override;
+
+private:
+	void Select(const struct FInputActionValue& InputActionValue);
+
+	
+private:
+	UPROPERTY(EditAnywhere,Category="Input")
+	TObjectPtr<UInputMappingContext> DefaultContext;
+
+	UPROPERTY(EditAnywhere, Category="Input")
+	TObjectPtr<UInputAction> SelectAction;
+	
 	
 };
