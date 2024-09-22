@@ -6,6 +6,7 @@
 #include "GameFramework/PlayerController.h"
 #include "ATAPlayerController.generated.h"
 
+class IStudyObjectInterface;
 class UInputMappingContext;
 class UInputAction;
 /**
@@ -16,6 +17,9 @@ class AGROTECHAVIA_API AATAPlayerController : public APlayerController
 {
 	GENERATED_BODY()
 
+public:
+	virtual void PlayerTick(float DeltaTime) override;
+	
 protected:
 	virtual void BeginPlay() override;
 
@@ -24,6 +28,7 @@ protected:
 private:
 	void Select(const struct FInputActionValue& InputActionValue);
 
+	void CursorTrace();
 	
 private:
 	UPROPERTY(EditAnywhere,Category="Input")
@@ -31,6 +36,6 @@ private:
 
 	UPROPERTY(EditAnywhere, Category="Input")
 	TObjectPtr<UInputAction> SelectAction;
-	
-	
+
+	UObject* SelectedActor;
 };

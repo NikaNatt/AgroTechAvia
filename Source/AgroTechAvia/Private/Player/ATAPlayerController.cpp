@@ -5,6 +5,14 @@
 
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "Interaction/StudyObjectInterface.h"
+
+void AATAPlayerController::PlayerTick(float DeltaTime)
+{
+	Super::PlayerTick(DeltaTime);
+
+	CursorTrace();
+}
 
 void AATAPlayerController::BeginPlay()
 {
@@ -36,5 +44,53 @@ void AATAPlayerController::SetupInputComponent()
 
 void AATAPlayerController::Select(const FInputActionValue& InputActionValue)
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("This is an on screen message!"));
+	if (SelectedActor)
+	{
+		IStudyObjectInterface::Execute_OnObjectSelected(SelectedActor);
+	}
+}
+
+void AATAPlayerController::CursorTrace()
+{
+	FHitResult  CursorHit;
+	GetHitResultUnderCursor(ECC_Visibility, false, CursorHit);
+	if (!CursorHit.bBlockingHit) return;
+
+	UObject* CurrentActor = nullptr;
+
+	if (CursorHit.GetActor() && CursorHit.GetActor()->Implements<UStudyObjectInterface>())
+	{
+		CurrentActor = CursorHit.GetActor();
+	}
+
+	if (SelectedActor == nullptr)
+	{
+		if (CurrentActor != nullptr)
+		{
+			SelectedActor = CurrentActor;
+		}
+		else
+		{
+			// Do nothing
+		}
+	}
+	else // SelectedActor is valid
+	{
+		if (CurrentActor == nullptr)
+		{
+			SelectedActor = nullptr;
+		}
+		else // Both actors are valid
+		{
+			if (CurrentActor != SelectedActor)
+			{
+				SelectedActor = CurrentActor;
+			}
+			else // Actors are the same
+			{
+				// Do nothing
+			}
+		}
+	}
+	
 }
