@@ -9,8 +9,8 @@
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnLessonActivated, FGameplayTag, StudyObjectTag);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnLessonDeactivated);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnPartFocused, AActor*, Actor, FGameplayTag, PartTag);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnViewTargetChanged, AActor*, Actor);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnPartFocused, FGameplayTag, PartTag);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnViewTargetChanged, FGameplayTag, Actor);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnLessonSelected, FGameplayTag, StudyObjectTag);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnLessonUnselected);
 
