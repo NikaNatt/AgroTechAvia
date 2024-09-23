@@ -25,10 +25,14 @@ protected:
 
 	virtual void SetupInputComponent() override;
 
+
 private:
 	void Select(const struct FInputActionValue& InputActionValue);
 
 	void CursorTrace();
+
+	UFUNCTION(BlueprintCallable)
+	void ToggleInputMode(bool IsMainMenu);
 	
 private:
 	UPROPERTY(EditAnywhere,Category="Input")
@@ -38,4 +42,7 @@ private:
 	TObjectPtr<UInputAction> SelectAction;
 
 	UObject* SelectedActor;
+
+	FInputModeUIOnly MainMenuInputModeData;
+	FInputModeGameAndUI InLessonInputModeData;
 };

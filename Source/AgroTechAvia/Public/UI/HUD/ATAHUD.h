@@ -20,7 +20,7 @@ protected:
 
 private:
 	UPROPERTY()
-	TObjectPtr<UATA_UserWidget> MainWidgetRef;
+	TObjectPtr<UUserWidget> MainWidgetRef;
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UUserWidget> MainWidgetSubclass;

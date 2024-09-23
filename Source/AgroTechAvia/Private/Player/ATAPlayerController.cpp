@@ -26,9 +26,7 @@ void AATAPlayerController::BeginPlay()
 
 	bShowMouseCursor = true;
 	
-	FInputModeGameAndUI InputModeData;
-	InputModeData.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
-	SetInputMode(InputModeData);
+	SetInputMode(MainMenuInputModeData);
 }
 
 void AATAPlayerController::SetupInputComponent()
@@ -38,9 +36,8 @@ void AATAPlayerController::SetupInputComponent()
 	UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(InputComponent);
 
 	EnhancedInputComponent->BindAction(SelectAction, ETriggerEvent::Started, this, &AATAPlayerController::Select);
-
-	
 }
+
 
 void AATAPlayerController::Select(const FInputActionValue& InputActionValue)
 {
@@ -93,4 +90,16 @@ void AATAPlayerController::CursorTrace()
 		}
 	}
 	
+}
+
+void AATAPlayerController::ToggleInputMode(bool IsMainMenu)
+{
+	if(IsMainMenu)
+	{
+		SetInputMode(MainMenuInputModeData);
+	}
+	else
+	{
+		SetInputMode(InLessonInputModeData);
+	}
 }
